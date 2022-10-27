@@ -1,10 +1,12 @@
 import styled from "styled-components";
+import Header from "../../components/Header/Header";
 import Navbar from "../../components/Navbar/Navbar";
 
 const Home = () => {
   return (
     <MainContainer>
       <Navbar/>
+      <Header/>
     </MainContainer>
   );
 };
@@ -12,8 +14,8 @@ const Home = () => {
 export default Home;
 const MainContainer = styled.div`
 display: flex;
-justify-content: center;
-align-items: center;
+flex-direction: column;
+gap: 2rem;
 height: 100vh;
 width: 100%;
 background: url("../../assets/recipe.png")
