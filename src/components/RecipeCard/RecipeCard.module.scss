@@ -1,7 +1,7 @@
 .detailsButton {
     color: #000;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-    background-color: #3D348B;
+    background-color: #df3b57;
     color: #fff;
     padding: 1rem;
     text-decoration: none;
@@ -13,7 +13,7 @@
     border-radius: 1rem;
     &:hover {
         background-color: #fff;
-        color: #3D348B;
+        color: #df3b57;
         transition: ease-in-out 400ms;
     }
 }

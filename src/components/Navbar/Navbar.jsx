@@ -5,7 +5,7 @@ import style from './Navbar.module.scss'
 
 const Navbar = () => {
   const logOut = () => {
-    localStorage.setItem("user", "");
+    localStorage.clear()
   };
 
   return (

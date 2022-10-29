@@ -25,10 +25,10 @@ const SearchInput = styled.input`
 `
 
 const SearchSelect = styled.select`
-  height: 3rem;
+  height: 3.1rem;
   border: none;
   width: 7rem;
-  background-color: #e6af2e;
+  background-color: #3A748C;
   padding-left: 0.5rem;
   font-size: 1rem;
   color: #fff;
@@ -36,18 +36,18 @@ const SearchSelect = styled.select`
 `
 
 const SearchSubmit = styled.input`
-  height: 3.1rem;
+  height: 3rem;
   border: none;
   width: 7rem;
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
-  background-color: #3D348B;
-  color: #e6af2e;
+  background-color: #df3b57;
+  color: #fff;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   &:hover{
-    background-color: #3A748C;
+    background-color: #ee4b6a;
   transition: ease-in-out 400ms;
   }
 `

@@ -4,7 +4,7 @@ const LoginFormContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #e6af2ef2;
+  background-color: #0f7173e3;
   border-radius: 1rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   width: 20rem;
@@ -33,12 +33,12 @@ height: 2rem;
 width: 100%;
 border: none;
 border-radius: 0.5rem;
-background-color: #3D348B;
+background-color: #df3b57;
 color: #fff;
 font-weight: 600;
 cursor: pointer;
 &:hover{
-  background-color: #3A748C;
+  background-color: #ee4b6a;
   transition: ease-in-out 400ms;
 }
 `
@@ -50,7 +50,7 @@ border-radius: 1rem;
 
 const LoginHeading = styled.h2`
 margin: 0;
-color: #3D348B;
+color: #fff;
 `
 
 export { LoginFormContainer, LoginInput, Form, SubmitButton, LoginLogo, LoginHeading };
