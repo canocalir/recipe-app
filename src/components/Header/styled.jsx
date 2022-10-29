@@ -22,6 +22,9 @@ const SearchInput = styled.input`
   border-bottom-left-radius: 0.5rem;
   padding-left: 1rem;
   border: none;
+  @media (max-width:768px){
+    width: 8rem;
+  }
 `
 
 const SearchSelect = styled.select`
@@ -46,6 +49,9 @@ const SearchSubmit = styled.input`
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
+  @media (max-width:768px){
+    width: 5rem;
+  }
   &:hover{
     background-color: #ee4b6a;
   transition: ease-in-out 400ms;
