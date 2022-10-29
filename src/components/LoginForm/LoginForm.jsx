@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { LoginFormContainer } from "./styled";
+import { LoginFormContainer, LoginInput, Form, SubmitButton, LoginLogo, LoginHeading } from "./styled";
+import logo from '../../assets/recipe.jpg'
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -10,25 +11,27 @@ const LoginForm = () => {
   };
   return (
     <LoginFormContainer>
-      <form onSubmit={login}>
+      <Form onSubmit={login}>
+        <LoginLogo src={logo}/>
+        <LoginHeading>Great Recipe App</LoginHeading>
         <label htmlFor="username">Username</label>
-        <input
+        <LoginInput
           required
-          placeholder="USERNAME"
+          placeholder="Enter your username"
           type="text"
           name="username"
           id="username"
         />
         <label htmlFor="password">Password</label>
-        <input
+        <LoginInput
           required
-          placeholder="PASSWORD"
+          placeholder="Enter your password"
           type="password"
           name="password"
           id="password"
         />
-        <input type="submit" value="LOGIN" />
-      </form>
+        <SubmitButton type="submit" value="LOGIN" />
+      </Form>
     </LoginFormContainer>
   );
 };

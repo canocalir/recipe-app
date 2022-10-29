@@ -1,0 +1,9 @@
+.Link {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.3rem;
+  &:hover {
+    color: #3a748c;
+    transition: ease-in-out 400ms;
+  }
+}

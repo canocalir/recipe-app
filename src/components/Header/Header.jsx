@@ -1,48 +1,98 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import RecipeCard from '../RecipeCard/RecipeCard'
+import React, { useState, useEffect } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import RecipeCard from "../RecipeCard/RecipeCard";
+import {
+  RecipesContainer,
+  SearchContainer,
+  SearchInput,
+  SearchSelect,
+  SearchSubmit,
+} from "./styled";
 
 const Header = () => {
-  const [recipes, setRecipes] = useState([])
-  const [query, setQuery] = useState('')
-  const [meal, setMeal] = useState('Breakfast')
+  const initializePreviousSearchData = () => {
+    return JSON.parse(localStorage.getItem('recipes')) ?? []
+  }
+  const [recipes, setRecipes] = useState(initializePreviousSearchData());
+  const [query, setQuery] = useState();
+  const [meal, setMeal] = useState("Breakfast");
 
-  const mealTypes = ['Breakfast', 'Dinner', 'Lunch', 'Snack', 'Teatime']
+  const mealTypes = ["Breakfast", "Dinner", "Lunch", "Snack", "Teatime"];
 
-  const url = process.env.REACT_APP_RECIPE_API_BASE + `q=${query}&app_id=${process.env.REACT_APP_RECIPE_API_ID}&app_key=${process.env.REACT_APP_RECIPE_API_KEY}&mealType=${meal}`
+  useEffect(() => {
+    localStorage.setItem('recipes', JSON.stringify(recipes))
+  }, [recipes])
+
+  const url =
+    process.env.REACT_APP_RECIPE_API_BASE +
+    `q=${query}&app_id=${process.env.REACT_APP_RECIPE_API_ID}&app_key=${process.env.REACT_APP_RECIPE_API_KEY}&mealType=${meal}`;
 
   const fetchRecipesHandler = async (e) => {
-    e.preventDefault()
-    const res = await fetch(url)
-    const data = await res.json()
-    setRecipes(data.hits)
-  }
-  console.log(recipes)
+    e.preventDefault();
+    if (query) {
+      const res = await fetch(url);
+      const data = await res.json();
+      setRecipes(data.hits);
+    } else {
+      return toast.error("Enter a Food Name!", {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+  };
+
   return (
-    <div>
-      <form onSubmit={fetchRecipesHandler}>
-        <input onChange={e => setQuery(e.target.value)} type="text" name="search" id="search" />
-        <select onChange={e => setMeal(e.target.value)} name="type" id="type">
-          {mealTypes.map((meal) => (
-            <option value={meal}>{meal}</option>
-          ))}
-        </select>
-        <input type="submit" value="Search" />
-      </form>
-      <RecipeCardContainer>
-      {recipes.map((recipe, index) => {
-        return <RecipeCard index={index} key={index} recipe={recipe}/>
-      })}
-      </RecipeCardContainer>
-    </div>
-  )
-}
+    <>
+      <SearchContainer>
+        <form onSubmit={fetchRecipesHandler}>
+          <SearchInput
+            placeholder="Enter a food name"
+            onChange={(e) => setQuery(e.target.value)}
+            type="text"
+            name="search"
+            id="search"
+          />
+          <SearchSelect
+            onChange={(e) => setMeal(e.target.value)}
+            name="type"
+            id="type"
+          >
+            {mealTypes.map((meal, index) => (
+              <option key={index} value={meal}>
+                {meal}
+              </option>
+            ))}
+          </SearchSelect>
+          <SearchSubmit type="submit" value="Search" />
+        </form>
+      </SearchContainer>
+      <RecipesContainer>
+        {recipes.map((recipe, index) => {
+          return <RecipeCard index={index} key={index} recipe={recipe} />;
+        })}
+        <ToastContainer
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
+      </RecipesContainer>
+    </>
+  );
+};
 
-export default Header
-
-const RecipeCardContainer = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
-`
+export default Header;

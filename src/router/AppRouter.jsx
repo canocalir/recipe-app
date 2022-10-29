@@ -7,12 +7,13 @@ import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 
 const AppRouter = () => {
+  
   return (
     <Routes>
       <Route path="/" element={<PrivateRoute />}>
         <Route path="/" element={<Navigate replace to="dashboard" />} />
         <Route path="dashboard" element={<Home />} />
-        <Route path="details/:recipeID" element={<Details />} />
+        <Route path="details/:recipeId" element={<Details />} />
         <Route path="about" element={<About />} />
       </Route>
       <Route path="login" element={<PublicRoute />}>
